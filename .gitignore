@@ -1,38 +1,35 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
+# Operating System Files
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
+*.DS_Store
+Thumbs.db
+*.sw?
+.#*
+*#
+*~
+*.sublime-*
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# Build Artifacts
 
-### NetBeans ###
-nbproject/private/
+.gradle/
 build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-### Eclipse ###
-
-.metadata
+target/
 bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
+dependency-reduced-pom.xml
+
+# Eclipse Project Files
+
+.classpath
+.project
 .settings/
-.loadpath
-.recommenders
+
+# IntelliJ IDEA Files
+
+*.iml
+*.eml
+*.ipr
+*.iws
+*.idea
+
+# Logs
+log.txt
+*.log
