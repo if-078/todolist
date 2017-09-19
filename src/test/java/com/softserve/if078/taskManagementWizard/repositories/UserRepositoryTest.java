@@ -33,15 +33,6 @@ public class UserRepositoryTest {
 		System.out.println("-------------------");
 		repository.findAll();
 		System.out.println("-------------------");
-
-		//createTestEmployee("bob");
-
-		/*
-		 * mvc.perform(get("/api/employees").contentType(MediaType.APPLICATION_JSON)).andExpect(status()
-		 * .isOk()).andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON)).andExpect
-		 * (jsonPath("$[0].name", is("bob")));
-		 */
-
 	}
 
 }
