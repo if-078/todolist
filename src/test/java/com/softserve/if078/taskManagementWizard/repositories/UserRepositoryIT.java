@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.softserve.if078.taskManagementWizard.TaskManagementWizardApplication;
+import com.softserve.if078.taskManagementWizard.TaskManagementWizardApplicationTests;
 import com.softserve.if078.taskManagementWizard.configuration.H2JpaConfig;
 import com.softserve.if078.taskManagementWizard.model.User;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { TaskManagementWizardApplication.class, H2JpaConfig.class })
+@SpringBootTest(classes = { TaskManagementWizardApplicationTests.class, H2JpaConfig.class })
 public class UserRepositoryIT {
 
 	@Autowired
