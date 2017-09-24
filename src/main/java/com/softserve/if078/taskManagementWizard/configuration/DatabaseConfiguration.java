@@ -40,17 +40,6 @@ public class DatabaseConfiguration {
 		return new DataSourceProperties();
 	}
 
-	/*
-	 * @Bean public DataSource dataSource(DataSourceProperties dataSourceProperties) {
-	 * System.out.println("dataSourceProperties " + dataSourceProperties.getDriverClassName());
-	 * System.out.println("dataSourceProperties " + dataSourceProperties.getUsername());
-	 * 
-	 * HikariDataSource dataSource = (HikariDataSource)
-	 * DataSourceBuilder.create().driverClassName(dataSourceProperties.getDriverClassName()).url(
-	 * dataSourceProperties.getUrl()).username(dataSourceProperties.getUsername()).password(
-	 * dataSourceProperties.getPassword()).type(HikariDataSource.class).build(); return dataSource; }
-	 */
-
 	@Bean
 	public BasicDataSource dataSource() {
 
