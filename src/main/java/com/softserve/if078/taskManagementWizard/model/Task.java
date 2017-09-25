@@ -2,6 +2,7 @@ package com.softserve.if078.taskManagementWizard.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,8 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -21,22 +24,22 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User implements Serializable {
+public class Task implements Serializable {
 
-  private static final long serialVersionUID = -621667797282692035L;
-
+  private static final long serialVersionUID = -6218899735852949634L;
   private int id;
   private String name;
-  private String pass;
-  private String email;
-  private List<Task> listTasks = new ArrayList<>(0);
+  private Status status;
+  private Priority priority;
+  private Date createdDate = new Date();
+  private List<User> userList = new ArrayList<>(0);
 
-  public void addTask(Task task) {
-    this.listTasks.add(task);
+  public void addUser(User user) {
+    this.userList.add(user);
   }
 
   @Id
-  @Column(name = "user_id")
+  @Column(name = "task_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return id;
@@ -46,7 +49,6 @@ public class User implements Serializable {
     this.id = id;
   }
 
-  @Column(name = "name")
   public String getName() {
     return name;
   }
@@ -55,33 +57,44 @@ public class User implements Serializable {
     this.name = name;
   }
 
-  @Column(name = "pass")
-  public String getPass() {
-    return pass;
+  @ManyToOne
+  @JoinColumn(name = "status_id")
+  public Status getStatus() {
+    return status;
   }
 
-  public void setPass(String pass) {
-    this.pass = pass;
+  public void setStatus(Status status) {
+    this.status = status;
   }
 
-  @Column(name = "email")
-  public String getEmail() {
-    return email;
+  @ManyToOne
+  @JoinColumn(name = "priority_id")
+  public Priority getPriority() {
+    return priority;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setPriority(Priority priority) {
+    this.priority = priority;
+  }
+
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_date")
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(Date date) {
+    this.createdDate = date;
   }
 
   @JsonIgnore
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "users_tags", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "task_id"))
-  public List<Task> getListTasks() {
-    return listTasks;
+  @ManyToMany(mappedBy = "listTasks", cascade = { CascadeType.ALL })
+  public List<User> getUsers() {
+    return userList;
   }
 
-  public void setListTasks(List<Task> listTasks) {
-    this.listTasks = listTasks;
+  public void setUsers(List<User> users) {
+    this.userList = users;
   }
 
   @Override

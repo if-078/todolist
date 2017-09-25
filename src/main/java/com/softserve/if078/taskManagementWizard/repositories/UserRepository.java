@@ -8,14 +8,14 @@ import com.softserve.if078.taskManagementWizard.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	List<User> findAll();
+  List<User> findAll();
 
-	User getOne(Integer ID);
+  // User getOne(Integer ID);
 
-	User save(User user);
+  User save(User user);
 
-	User findByEmailAndPass(String email, String pass);
+  User findByEmailAndPass(String email, String pass);
 
-	void delete(Integer ID);
+  void delete(Integer ID);
 
 }

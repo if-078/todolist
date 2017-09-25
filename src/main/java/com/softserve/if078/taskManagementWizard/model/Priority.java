@@ -1,7 +1,6 @@
 package com.softserve.if078.taskManagementWizard.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,43 +9,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class User implements Serializable {
+public class Priority implements Serializable {
 
-  private static final long serialVersionUID = -621667797282692035L;
-
-  private int id;
+  private static final long serialVersionUID = 4906034498580064833L;
+  private int priorityId;
   private String name;
-  private String pass;
-  private String email;
-  private List<Task> listTasks = new ArrayList<>(0);
-
-  public void addTask(Task task) {
-    this.listTasks.add(task);
-  }
+  private List<Task> listTasks;
 
   @Id
-  @Column(name = "user_id")
+  @Column(name = "priority_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public int getId() {
-    return id;
+  public int getPriorityId() {
+    return priorityId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setPriorityId(int priorityId) {
+    this.priorityId = priorityId;
   }
 
-  @Column(name = "name")
   public String getName() {
     return name;
   }
@@ -55,27 +42,7 @@ public class User implements Serializable {
     this.name = name;
   }
 
-  @Column(name = "pass")
-  public String getPass() {
-    return pass;
-  }
-
-  public void setPass(String pass) {
-    this.pass = pass;
-  }
-
-  @Column(name = "email")
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  @JsonIgnore
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "users_tags", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "task_id"))
+  @OneToMany(mappedBy = "priority", cascade = { CascadeType.ALL })
   public List<Task> getListTasks() {
     return listTasks;
   }
@@ -101,4 +68,5 @@ public class User implements Serializable {
 
     return ToStringBuilder.reflectionToString(this);
   }
+
 }
